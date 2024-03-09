@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
+import 'package:unicrush/presentation/views/auth/login/login_page.dart';
 import 'package:unicrush/presentation/views/find/find_page_controller.dart';
 import 'dart:ui';
 
@@ -36,7 +37,21 @@ class FindPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
                   child: _topBar(context),
-                )
+                ),
+                // test buttons
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                          onPressed: () => Get.to(LoginPage()),
+                          child: Text('Login')),
+                      TextButton(
+                          onPressed: () => Get.to(LoginPage()),
+                          child: Text('Login'))
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
