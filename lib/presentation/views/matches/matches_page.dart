@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:unicrush/model/matches.dart';
@@ -18,8 +19,8 @@ class MatchesPage extends StatelessWidget {
       body: Stack(
         children: [
           // top
-          Padding(
-            padding: const EdgeInsets.only(top: 30.0),
+          SizedBox(
+            height: 100,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -62,7 +63,7 @@ class MatchesPage extends StatelessWidget {
               color: kPrimary,
               elevation: 5,
               child: Container(
-                  padding: const EdgeInsets.all(30),
+                  padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
                   width: Get.width,
                   child: _matchesListBody()),
             ),
@@ -212,7 +213,8 @@ class ProfileTiles extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: ksFontFamily,
                           fontSize: 45,
-                          color: Colors.grey),
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
