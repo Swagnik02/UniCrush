@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unicrush/presentation/route/routes.dart';
+import 'package:unicrush/services/current_user_data_service.dart';
 
 class LoginPageController extends GetxController {
   late final TextEditingController emailController;
@@ -45,13 +46,13 @@ class LoginPageController extends GetxController {
         password: passwordController.text,
       )
           .then((value) {
-        // UserDataService().fetchUserData(emailController.text).then(
-        //   (_) {
-        //     // Store user data locally after successful login
-        //     UserDataService().storeUserDataLocally();
-        //   },
-        // );
-        // toggleLoading();
+        CurrentUserDataService().fetchUserData(emailController.text).then(
+          (_) {
+            // Store user data locally after successful login
+            CurrentUserDataService().storeUserDataLocally();
+          },
+        );
+        toggleLoading();
 
         // // Navigate to the home screen
         Get.offAllNamed(Routes.home);

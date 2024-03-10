@@ -23,3 +23,15 @@ TextStyle? textStyleSubTitle2 = const TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.w600,
 );
+
+const String kcUid = 'uid';
+const String kcUserName = 'userName';
+const String kcEmail = 'email';
+const String kcFullName = 'fullName';
+const String kcDob = 'dob';
+const String kcGender = 'gender';
+const String kcSchool = 'school';
+const String kcClubs = 'clubs';
+const String kcPhotos = 'photos';
+const String kcCity = 'city';
+const String kcBio = 'bio';

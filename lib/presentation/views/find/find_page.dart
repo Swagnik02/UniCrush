@@ -40,23 +40,6 @@ class FindPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 40.0),
                   child: _topBar(context),
                 ),
-                // test buttons
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                          onPressed: () => Get.to(() => LoginPage()),
-                          child: Text('Login')),
-                      TextButton(
-                          onPressed: () => Get.to(() => SignUpPage()),
-                          child: Text('Signup')),
-                      TextButton(
-                          onPressed: () => Get.to(() => OnboardPage()),
-                          child: Text('OnBoard'))
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
@@ -69,40 +52,38 @@ class FindPage extends StatelessWidget {
     return Column(
       children: [
         Center(
-          child: Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.transparent,
-                    border: Border.all(color: kBackground)),
-                child: ClipRRect(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: kBackground.withOpacity(0.2),
-                      ),
-                      child: Row(
-                        children: [
-                          _searchBar(context),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 16),
-                            child: Text(
-                              'Find your crush',
-                              style: TextStyle(
-                                  fontFamily: ksFontFamily,
-                                  fontSize: 20,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                  color: Colors.transparent,
+                  border: Border.all(color: kBackground)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: kBackground.withOpacity(0.2),
+                    ),
+                    child: Row(
+                      children: [
+                        _searchBar(context),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 16),
+                          child: Text(
+                            'Find your crush',
+                            style: TextStyle(
+                                fontFamily: ksFontFamily,
+                                fontSize: 20,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
