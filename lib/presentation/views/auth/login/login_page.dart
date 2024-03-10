@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
 import 'package:unicrush/presentation/views/auth/login/login_page_controller.dart';
 import 'package:unicrush/presentation/views/auth/signup/signup_page.dart';
+import 'package:unicrush/presentation/widgets/custom_text_field.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -139,63 +140,6 @@ class LoginPage extends StatelessWidget {
         child: Icon(
           icon,
           size: 35,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String label;
-  final TextInputType keyboardType;
-  final String hint;
-  final bool? isPassword;
-
-  const CustomTextField({
-    Key? key,
-    required this.controller,
-    required this.label,
-    required this.keyboardType,
-    required this.hint,
-    this.isPassword,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: isPassword ?? false,
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
-          labelText: label,
-          hintText: hint,
-          hintStyle: textStyleSubTitle,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0),
-            borderSide: const BorderSide(
-              color: Colors.grey,
-              width: 1.0,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0),
-            borderSide: const BorderSide(
-              color: Colors.grey,
-              width: 1.0,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.0),
-            borderSide: BorderSide(
-              color: Theme.of(context).primaryColor,
-              width: 2.0,
-            ),
-          ),
         ),
       ),
     );
