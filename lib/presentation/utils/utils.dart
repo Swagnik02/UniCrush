@@ -14,3 +14,8 @@ class Utils {
     );
   }
 }
+
+class FirestoreCollections {
+  static const String usersCollection = "users";
+  static const String productsChatRoom = "productsChatRoom";
+}
