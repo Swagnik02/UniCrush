@@ -12,6 +12,6 @@ class SignupPageController extends GetxController {
   }
 
   void signUp() {
-    Get.offNamed('/home');
+    Get.offAllNamed('/home');
   }
 }

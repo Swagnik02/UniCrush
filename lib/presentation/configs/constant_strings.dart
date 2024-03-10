@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 /// constant strings are prefixed with [ks]
 const String ksFontFamily = "Mulish";
 const String ksFontFamily2 = "Permanent-Marker";
+const String ksFontFamily3 = "Justice-League";
 
 TextStyle? textStyleTitle = const TextStyle(
   fontFamily: ksFontFamily,

@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
 import 'package:unicrush/presentation/views/auth/login/login_page.dart';
+import 'package:unicrush/presentation/views/auth/onboard/onboard_page.dart';
 import 'package:unicrush/presentation/views/auth/signup/signup_page.dart';
 import 'package:unicrush/presentation/views/find/find_page_controller.dart';
 import 'dart:ui';
@@ -49,7 +50,10 @@ class FindPage extends StatelessWidget {
                           child: Text('Login')),
                       TextButton(
                           onPressed: () => Get.to(SignUpPage()),
-                          child: Text('Signup'))
+                          child: Text('Signup')),
+                      TextButton(
+                          onPressed: () => Get.to(OnboardPage()),
+                          child: Text('OnBoard'))
                     ],
                   ),
                 ),
