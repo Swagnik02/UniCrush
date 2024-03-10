@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:unicrush/presentation/views/auth/auth.dart';
 import 'package:unicrush/presentation/views/auth/login/login_page.dart';
 import 'package:unicrush/presentation/views/auth/onboard/onboard_page.dart';
 import 'package:unicrush/presentation/views/auth/signup/signup_page.dart';
@@ -8,6 +9,7 @@ import 'package:unicrush/presentation/views/matches/matches_page.dart';
 import 'package:unicrush/presentation/views/profile/profile_page.dart';
 
 class Routes {
+  static const String authHome = '/';
   static const String login = '/login';
   static const String signup = '/signup';
   static const String onboard = '/onboard';
@@ -19,6 +21,7 @@ class Routes {
 
 final List<GetPage> routes = [
   // auth
+  GetPage(name: Routes.authHome, page: () => AuthHome()),
   GetPage(name: Routes.onboard, page: () => OnboardPage()),
   GetPage(name: Routes.login, page: () => LoginPage()),
   GetPage(name: Routes.signup, page: () => SignUpPage()),

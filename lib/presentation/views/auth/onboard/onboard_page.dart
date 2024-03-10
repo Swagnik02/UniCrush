@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
 import 'package:unicrush/presentation/configs/constant_assets.dart';
-import 'package:unicrush/presentation/views/auth/login/login_page.dart';
+import 'package:unicrush/presentation/route/routes.dart';
+import 'package:unicrush/presentation/utils/utils.dart';
 
 ///Example of App with LiquidSwipe by providing list of widgets
 class OnboardPage extends StatefulWidget {
@@ -114,8 +116,11 @@ class _OnboardPage extends State<OnboardPage> {
             child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: TextButton(
-                onPressed: () {
-                  Get.to(LoginPage());
+                onPressed: () async {
+                  final pref = await SharedPreferences.getInstance();
+                  pref.setInt(GlobalUtil.onBordingToken, 1);
+
+                  Get.offAllNamed(Routes.authHome);
                 },
                 child: const Text("Skip"),
                 style: TextButton.styleFrom(

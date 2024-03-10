@@ -46,6 +46,8 @@ dependencies:
   liquid_swipe: ^3.1.0
   lottie: ^3.1.0
   firebase_core: ^2.24.2
+  shared_preferences: ^2.2.2
+  firebase_auth: ^4.16.0
 
 
 dev_dependencies:

@@ -46,13 +46,13 @@ class FindPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
-                          onPressed: () => Get.to(LoginPage()),
+                          onPressed: () => Get.to(() => LoginPage()),
                           child: Text('Login')),
                       TextButton(
-                          onPressed: () => Get.to(SignUpPage()),
+                          onPressed: () => Get.to(() => SignUpPage()),
                           child: Text('Signup')),
                       TextButton(
-                          onPressed: () => Get.to(OnboardPage()),
+                          onPressed: () => Get.to(() => OnboardPage()),
                           child: Text('OnBoard'))
                     ],
                   ),

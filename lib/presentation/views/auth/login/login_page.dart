@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: controller.login,
+                        onPressed: controller.logIn,
                         child: const Padding(
                           padding: EdgeInsets.all(20.0),
                           child: Text('Login'),
@@ -115,7 +115,7 @@ class LoginPage extends StatelessWidget {
                         color: Colors.blue,
                       ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => Get.to(SignUpPage()),
+                        ..onTap = () => Get.to(() => SignUpPage()),
                     ),
                   ],
                 ),

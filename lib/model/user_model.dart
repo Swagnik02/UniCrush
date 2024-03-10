@@ -3,9 +3,10 @@ import 'package:unicrush/presentation/configs/constant_assets.dart';
 class UserModel {
   String uid;
   String username;
-  String fullName;
-  DateTime dob;
-  String gender;
+  String? email;
+  String? fullName;
+  DateTime? dob;
+  String? gender;
   String? school;
   List<String>? clubs;
   List<String>? photos;
@@ -15,9 +16,10 @@ class UserModel {
   UserModel({
     required this.uid,
     required this.username,
-    required this.fullName,
-    required this.dob,
-    required this.gender,
+    this.email,
+    this.fullName,
+    this.dob,
+    this.gender,
     this.school,
     this.clubs,
     this.photos,
