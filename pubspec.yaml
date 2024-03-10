@@ -49,6 +49,7 @@ dependencies:
   firebase_auth: ^4.17.8
   cloud_firestore: ^4.15.8
   firebase_core: ^2.27.0
+  backdrop_modal_route: ^2.0.4
   
 
 dev_dependencies:

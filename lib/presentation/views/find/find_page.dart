@@ -1,10 +1,14 @@
+import 'package:backdrop_modal_route/backdrop_modal_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
+import 'package:unicrush/presentation/configs/constant_assets.dart';
 import 'package:unicrush/presentation/views/find/find_page_controller.dart';
 import 'dart:ui';
+import 'package:unicrush/presentation/widgets/profile_tiles.dart';
 
 class FindPage extends StatelessWidget {
   FindPage({super.key});
@@ -27,7 +31,7 @@ class FindPage extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Image.asset(
-                    'assets/images/find-bg.png',
+                    kaBackground,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -37,6 +41,12 @@ class FindPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 40.0),
                   child: _topBar(context),
                 ),
+                Center(
+                  child: TextButton(
+                    onPressed: () => handleCustomizedBackdropContent(context),
+                    child: Text('Test'),
+                  ),
+                )
               ],
             ),
           ),
@@ -100,10 +110,14 @@ class FindPage extends StatelessWidget {
         FocusScope.of(context).unfocus();
         controller.resetSearch();
       },
+      enableKeyboardFocus: true,
       buttonElevation: 2,
       isOriginalAnimation: false,
       buttonBorderColour: Colors.purpleAccent,
-      onFieldSubmitted: (String value) => controller.filteredValues(value),
+      onFieldSubmitted: (String value) {
+        handleCustomizedBackdropContent(context);
+        controller.filteredValues(value);
+      },
       textEditingController: searchControl,
       trailingWidget: const Icon(
         Icons.search,
@@ -113,10 +127,59 @@ class FindPage extends StatelessWidget {
         Icons.arrow_back_ios_new_rounded,
         color: Colors.purpleAccent,
       ),
-      buttonWidget: Icon(
+      buttonWidget: const Icon(
         IconlyLight.search,
         color: Colors.purpleAccent,
       ),
     );
   }
+}
+
+Widget _searchBody() {
+  return Column(
+    children: [
+      Align(
+          alignment: Alignment.topRight,
+          child: Transform.rotate(
+            angle: 45 * (3.14 / 180), // Convert degrees to radians
+            child: CustomIconButtons(
+              icon: LineIcons.plus,
+              onTap: () => Get.back(),
+            ),
+          )),
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: _searchListBody(),
+      ),
+    ],
+  );
+}
+
+void handleCustomizedBackdropContent(BuildContext context) async {
+  await Navigator.push(
+    context,
+    BackdropModalRoute<void>(
+      overlayContentBuilder: (context) {
+        return _searchBody();
+      },
+      topPadding: 100.0,
+      barrierColorVal: Colors.transparent,
+      backgroundColor: kBlack12.withOpacity(0.5),
+      backdropShape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      // barrierLabelVal: 'Customized Backdrop',
+      shouldMaintainState: false,
+      canBarrierDismiss: true,
+    ),
+  );
+}
+
+Widget _searchListBody() {
+  return Container();
 }
