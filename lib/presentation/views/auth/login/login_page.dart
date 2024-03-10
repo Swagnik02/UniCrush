@@ -115,11 +115,7 @@ class LoginPage extends StatelessWidget {
                         color: Colors.blue,
                       ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          Get.to(const SignUpPage());
-                          // Handle Sign Up onTap action here
-                          print('Sign Up tapped!');
-                        },
+                        ..onTap = () => Get.to(SignUpPage()),
                     ),
                   ],
                 ),
