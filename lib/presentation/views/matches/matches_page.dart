@@ -1,71 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:unicrush/model/lists.dart';
 import 'package:unicrush/model/matches.dart';
 import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
+import 'package:unicrush/presentation/views/matches/matches_page_controller.dart';
 import 'package:unicrush/presentation/widgets/profile_tiles.dart';
 
 class MatchesPage extends StatelessWidget {
-  const MatchesPage({super.key});
-
+  MatchesPage({super.key});
+  final MatchesPageController controller = Get.put(MatchesPageController());
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBackground,
-      body: Stack(
-        children: [
-          // top
-          SizedBox(
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Material(
-                  elevation: 5,
-                  borderRadius: BorderRadius.circular(30),
-                  color: kBackground,
-                  child: Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Container(
-                      // width: Get.width / 5,
-                      height: 30,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 5),
-                      decoration: BoxDecoration(
-                          color: kPrimary.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        'Matches',
-                        style: TextStyle(
-                            color: kBackground,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold),
+    return GetBuilder<MatchesPageController>(
+      builder: (_) => Scaffold(
+        backgroundColor: kBackground,
+        body: Stack(
+          children: [
+            // top
+            SizedBox(
+              height: 100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () => fetchMatches(),
+                    child: Material(
+                      elevation: 5,
+                      borderRadius: BorderRadius.circular(30),
+                      color: kBackground,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Container(
+                          // width: Get.width / 5,
+                          height: 30,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 5),
+                          decoration: BoxDecoration(
+                              color: kPrimary.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            'Matches',
+                            style: TextStyle(
+                                color: kBackground,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          // mainbody
-          Padding(
-            padding: const EdgeInsets.only(top: 100.0),
-            child: Material(
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(35),
-                topLeft: Radius.circular(35),
+                  )
+                ],
               ),
-              color: kPrimary,
-              elevation: 5,
-              child: Container(
-                  padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
-                  width: Get.width,
-                  child: _matchesListBody()),
             ),
-          ),
-        ],
+            // mainbody
+            Padding(
+              padding: const EdgeInsets.only(top: 100.0),
+              child: Material(
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(35),
+                  topLeft: Radius.circular(35),
+                ),
+                color: kPrimary,
+                elevation: 5,
+                child: Container(
+                    padding:
+                        const EdgeInsets.only(top: 30, left: 30, right: 30),
+                    width: Get.width,
+                    child: _matchesListBody()),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

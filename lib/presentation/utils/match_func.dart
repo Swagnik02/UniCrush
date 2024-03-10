@@ -18,11 +18,11 @@ void matchBtn(MatchModel match) {
 
   matchesCollection.doc(CurrentUserDataService().userModel!.email).set(
     {
-      kcUid: match.uid,
-      kcEmail: match.email,
-      kcUserName: match.username,
-      kcPhotos: match.userPhoto,
-      kcMatchTime: match.matchTime,
+      kcUid: CurrentUserDataService().userModel!.uid,
+      kcEmail: CurrentUserDataService().userModel!.email,
+      kcUserName: CurrentUserDataService().userModel!.username,
+      kcPhotos: CurrentUserDataService().userModel!.photos,
+      kcMatchTime: DateTime.now(),
     },
   ).then((_) {
     log('Match data added successfully');

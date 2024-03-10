@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:unicrush/model/lists.dart';
 import 'package:unicrush/model/matches.dart';
 import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/configs.dart';

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/model/matches.dart';
 import 'package:unicrush/presentation/utils/utils.dart';
+import 'package:unicrush/services/current_user_data_service.dart';
 
 import '../presentation/configs/configs.dart';
 
@@ -34,5 +35,32 @@ Future<void> fetchUsers() async {
     });
   } catch (e) {
     print('Error fetching users: $e');
+  }
+}
+
+Future<void> fetchMatches() async {
+  try {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(FirestoreCollections.usersCollection)
+        .doc(CurrentUserDataService().userModel!.email)
+        .collection(FirestoreCollections.matchesCollection)
+        .get();
+
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic>? matchData = doc.data() as Map<String, dynamic>?;
+      if (matchData != null) {
+        MatchModel match = MatchModel(
+          uid: matchData['uid'] ?? '',
+          email: matchData['email'] ?? '',
+          username: matchData['username'] ?? '',
+          userPhoto: matchData['userPhoto'] ?? '',
+          matchTime: DateTime.now(),
+        );
+        matchesList.add(match);
+        log(match.username.toString());
+      }
+    });
+  } catch (e) {
+    print('Error fetching matches: $e');
   }
 }
