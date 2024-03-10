@@ -30,20 +30,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  layout: ^1.0.5
-  get: ^4.6.6
-  crystal_navigation_bar: ^1.0.0
-  searchbar_animation: ^0.0.4
-  url_launcher: ^6.2.5
-
+    
   # icons
   cupertino_icons: ^1.0.6
   font_awesome_flutter: ^10.7.0
   iconly: ^1.0.1
   atlas_icons: ^0.0.12
   line_icons: ^2.0.3
+
+  layout: ^1.0.5
+  get: ^4.6.6
+  crystal_navigation_bar: ^1.0.0
+  searchbar_animation: ^0.0.4
+  url_launcher: ^6.2.5
   liquid_swipe: ^3.1.0
   lottie: ^3.1.0
+  firebase_core: ^2.24.2
 
 
 dev_dependencies:
