@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:unicrush/model/lists.dart';
+import 'package:unicrush/model/matches.dart';
 import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
-import 'package:unicrush/presentation/utils/extensions/extensions.dart';
+import 'package:unicrush/presentation/utils/match_func.dart';
 
 class ProfileTiles extends StatelessWidget {
   final UserModel user;
@@ -26,7 +28,7 @@ class ProfileTiles extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(user.photos![0]),
+            image: NetworkImage(user.photos.toString()),
             fit: BoxFit.cover,
           ),
           color: kBackground,
@@ -65,7 +67,7 @@ Future<void> profileDetailsBottomSheet(BuildContext context, UserModel user) {
           ),
           color: kBackground,
           image: DecorationImage(
-            image: AssetImage(user.photos![0]),
+            image: NetworkImage(user.photos.toString()),
             fit: BoxFit.cover,
           ),
         ),
@@ -105,7 +107,8 @@ Future<void> profileDetailsBottomSheet(BuildContext context, UserModel user) {
                         color: kPrimaryMedium),
                   ),
                   Text(
-                    calculateAge(user.dob).toString(),
+                    // calculateAge(user.dob).toString() ??
+                    '25',
                     style: TextStyle(
                         fontFamily: ksFontFamily,
                         fontSize: 45,
@@ -135,6 +138,18 @@ Future<void> profileDetailsBottomSheet(BuildContext context, UserModel user) {
                       ),
                       CustomIconButtons(
                         icon: LineIcons.heart,
+                        onTap: () {
+                          matchBtn(
+                            MatchModel(
+                              uid: user.uid,
+                              email: user.email,
+                              username: user.username,
+                              userPhoto: user.photos.toString(),
+                              matchTime: DateTime.now(),
+                              user: user,
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

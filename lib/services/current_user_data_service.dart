@@ -29,6 +29,7 @@ class CurrentUserDataService {
       }
 
       String userEmail = currentUser.email ?? "";
+      String userUid = currentUser.uid;
       if (userEmail.isEmpty) {
         // Email not available
         return;
@@ -45,8 +46,8 @@ class CurrentUserDataService {
               productDocument.data() as Map<String, dynamic>;
 
           _userModel = UserModel(
-            uid: userData[kcUid].toString(),
-            email: userData[kcEmail]?.toString() ?? '',
+            uid: userUid,
+            email: userEmail,
             username: userData[kcUserName]?.toString() ?? '',
             fullName: userData[kcFullName]?.toString() ?? '',
             dob: userData[kcDob] != null
@@ -54,12 +55,15 @@ class CurrentUserDataService {
                 : null,
             gender: userData[kcGender]?.toString() ?? '',
             school: userData[kcSchool]?.toString() ?? '',
-            clubs: userData[kcClubs] != null
-                ? List<String>.from(userData[kcClubs])
-                : null,
-            photos: userData[kcPhotos] != null
-                ? List<String>.from(userData[kcPhotos])
-                : null,
+
+            clubs: userData[kcClubs]?.toString() ?? '',
+            photos: userData[kcPhotos]?.toString() ?? '',
+            // clubs: userData[kcClubs] != null
+            //     ? List<String>.from(userData[kcClubs])
+            //     : null,
+            // photos: userData[kcPhotos] != null
+            //     ? List<String>.from(userData[kcPhotos])
+            //     : null,
             city: userData[kcCity]?.toString() ?? '',
             bio: userData[kcBio]?.toString() ?? '',
           );
@@ -78,18 +82,22 @@ class CurrentUserDataService {
 
   void storeUserDataLocally() {
     if (_userModel != null) {
-      SharedPreferences.getInstance().then((prefs) {
-        prefs.setString(kcEmail, _userModel?.email ?? '');
-        prefs.setString(kcUserName, _userModel!.username);
-        prefs.setString(kcUid, _userModel?.uid ?? '');
-        prefs.setString(kcCity, _userModel?.city ?? '');
-        prefs.setString(kcFullName, _userModel?.fullName ?? '');
-        prefs.setString(kcGender, _userModel?.gender ?? '');
-        prefs.setString(kcSchool, _userModel?.school ?? '');
-        prefs.setStringList(kcClubs, _userModel?.clubs ?? []);
-        prefs.setStringList(kcPhotos, _userModel?.photos ?? []);
-        prefs.setString(kcBio, _userModel?.bio ?? '');
-      });
+      SharedPreferences.getInstance().then(
+        (prefs) {
+          prefs.setString(kcUid, _userModel?.uid ?? '');
+          prefs.setString(kcEmail, _userModel?.email ?? '');
+          prefs.setString(kcUserName, _userModel!.username);
+          prefs.setString(kcCity, _userModel?.city ?? '');
+          prefs.setString(kcFullName, _userModel?.fullName ?? '');
+          prefs.setString(kcGender, _userModel?.gender ?? '');
+          prefs.setString(kcSchool, _userModel?.school ?? '');
+          prefs.setString(kcClubs, _userModel?.clubs ?? '');
+          prefs.setString(kcPhotos, _userModel?.photos ?? '');
+          // prefs.setStringList(kcClubs, _userModel?.clubs ?? []);
+          // prefs.setStringList(kcPhotos, _userModel?.photos ?? []);
+          prefs.setString(kcBio, _userModel?.bio ?? '');
+        },
+      );
     }
   }
 
@@ -97,8 +105,9 @@ class CurrentUserDataService {
   Future<void> retrieveUserDataLocally() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String userEmail = prefs.getString(kcEmail) ?? "";
-
+    log('Retrieve Data');
     if (userEmail.isNotEmpty) {
+      log('Retrieved Data:');
       await fetchUserData(userEmail);
     }
   }
@@ -110,22 +119,24 @@ class CurrentUserDataService {
         return;
       }
       String userEmail = currentUser.email ?? "";
+      String userUid = currentUser.uid;
       if (userEmail.isEmpty) {
         return;
       }
       CollectionReference usersCollection = FirebaseFirestore.instance
           .collection(FirestoreCollections.usersCollection);
       await usersCollection.doc(userEmail).update({
-        kcCity: updatedUserData.city,
-        kcUserName: updatedUserData.username,
-        kcFullName: updatedUserData.fullName,
-        kcGender: updatedUserData.gender,
+        // kcCity: updatedUserData.city,
+        // kcUserName: updatedUserData.username,
+        // kcFullName: updatedUserData.fullName,
+        // kcGender: updatedUserData.gender,
         kcSchool: updatedUserData.school,
         kcClubs: updatedUserData.clubs,
-        kcPhotos: updatedUserData.photos,
-        kcBio: updatedUserData.bio,
-        // kcUid: updatedUserData.uid,
-        // kcEmail: updatedUserData.email,
+        // kcPhotos: updatedUserData.photos,
+        // kcBio: updatedUserData.bio,
+
+        kcUid: userUid,
+        kcEmail: userEmail,
         // kcDob: updatedUserData.dob?.toIso8601String(),
       });
 

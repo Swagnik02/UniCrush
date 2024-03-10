@@ -1,78 +1,40 @@
+import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/constant_assets.dart';
 
-class Match {
+class MatchModel {
   String uid;
+  String? email;
   String username;
   String userPhoto;
   DateTime matchTime;
-  // UserModel user;
 
-  Match({
+  UserModel? user;
+
+  MatchModel({
     required this.uid,
+    this.email,
     required this.username,
     required this.userPhoto,
     required this.matchTime,
-    // required this.user,
+    this.user,
   });
 
-  static List<Match> matchList = [
-    Match(
+  static List<MatchModel> matchList = [
+    MatchModel(
       uid: '1',
       username: 'user1',
       userPhoto: kauser1,
       matchTime: DateTime.now(),
       // user: users.firstWhere((user) => user.uid == '1'),
     ),
-    Match(
+    MatchModel(
       uid: '2',
       username: 'user2',
       userPhoto: kauser2,
       matchTime: DateTime.now(),
       // user: users.firstWhere((user) => user.uid == '2'),
     ),
-    Match(
-      uid: '3',
-      username: 'user3',
-      userPhoto: kauser3,
-      matchTime: DateTime.now(),
-      // user: users.firstWhere((user) => user.uid == '3'),
-    ),
-    Match(
-      uid: '1',
-      username: 'user1',
-      userPhoto: kauser1,
-      matchTime: DateTime.now(),
-      // user: users.firstWhere((user) => user.uid == '1'),
-    ),
-    Match(
-      uid: '2',
-      username: 'user2',
-      userPhoto: kauser2,
-      matchTime: DateTime.now(),
-      // user: users.firstWhere((user) => user.uid == '2'),
-    ),
-    Match(
-      uid: '3',
-      username: 'user3',
-      userPhoto: kauser3,
-      matchTime: DateTime.now(),
-      // user: users.firstWhere((user) => user.uid == '3'),
-    ),
-    Match(
-      uid: '1',
-      username: 'user1',
-      userPhoto: kauser1,
-      matchTime: DateTime.now(),
-      // user: users.firstWhere((user) => user.uid == '1'),
-    ),
-    Match(
-      uid: '2',
-      username: 'user2',
-      userPhoto: kauser2,
-      matchTime: DateTime.now(),
-      // user: users.firstWhere((user) => user.uid == '2'),
-    ),
-    Match(
+    MatchModel(
       uid: '3',
       username: 'user3',
       userPhoto: kauser3,

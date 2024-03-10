@@ -17,5 +17,5 @@ class Utils {
 
 class FirestoreCollections {
   static const String usersCollection = "users";
-  static const String productsChatRoom = "productsChatRoom";
+  static const String matchesCollection = "matches";
 }

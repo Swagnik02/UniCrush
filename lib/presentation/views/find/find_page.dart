@@ -4,11 +4,14 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
+import 'package:unicrush/model/lists.dart';
+import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
 import 'package:unicrush/presentation/configs/constant_assets.dart';
 import 'package:unicrush/presentation/views/find/find_page_controller.dart';
 import 'dart:ui';
 import 'package:unicrush/presentation/widgets/profile_tiles.dart';
+import 'package:unicrush/services/current_user_data_service.dart';
 
 class FindPage extends StatelessWidget {
   FindPage({super.key});
@@ -41,12 +44,6 @@ class FindPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 40.0),
                   child: _topBar(context),
                 ),
-                Center(
-                  child: TextButton(
-                    onPressed: () => handleCustomizedBackdropContent(context),
-                    child: Text('Test'),
-                  ),
-                )
               ],
             ),
           ),
@@ -147,6 +144,14 @@ Widget _searchBody() {
               onTap: () => Get.back(),
             ),
           )),
+      Align(
+        alignment: Alignment.topCenter,
+        child: Text(
+          'Club: ${CurrentUserDataService().userModel!.clubs}',
+          style: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
       Padding(
         padding: const EdgeInsets.all(16.0),
         child: _searchListBody(),
@@ -181,5 +186,22 @@ void handleCustomizedBackdropContent(BuildContext context) async {
 }
 
 Widget _searchListBody() {
-  return Container();
+  return SizedBox(
+    height: Get.height * 0.8,
+    child: ListView.builder(
+      itemCount: usersList.length,
+      itemBuilder: (context, index) {
+        UserModel user = usersList[index];
+        return ListTile(
+          leading: CircleAvatar(
+            foregroundImage: NetworkImage(user.photos.toString()),
+          ),
+          title: Text(user.username),
+          subtitle: Text(user.email ?? ''),
+          // You can add more details as needed
+          onTap: () => profileDetailsBottomSheet(context, user),
+        );
+      },
+    ),
+  );
 }

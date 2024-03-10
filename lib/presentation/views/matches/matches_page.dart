@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:unicrush/model/lists.dart';
 import 'package:unicrush/model/matches.dart';
 import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
@@ -71,15 +72,15 @@ class MatchesPage extends StatelessWidget {
 
   Widget _matchesListBody() {
     double aspectRatio = 1 / 1.35;
-    return FutureBuilder<List<Match>>(
-      future: Future.value(Match.matchList),
+    return FutureBuilder<List<MatchModel>>(
+      future: Future.value(matchesList),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          List<Match>? matches = snapshot.data;
+          List<MatchModel>? matches = snapshot.data;
           if (matches == null || matches.isEmpty) {
             return const Center(child: Text('No data found'));
           }
@@ -97,10 +98,10 @@ class MatchesPage extends StatelessWidget {
               ),
               itemCount: matches.length,
               itemBuilder: (context, index) {
-                Match match = matches[index];
+                MatchModel match = matches[index];
                 String uid = match.uid;
                 UserModel user =
-                    UserModel.dummyUsers.firstWhere((user) => user.uid == uid);
+                    usersList.firstWhere((user) => user.uid == uid);
                 return ProfileTiles(user: user);
               },
             ),

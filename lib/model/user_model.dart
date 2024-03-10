@@ -8,8 +8,8 @@ class UserModel {
   DateTime? dob;
   String? gender;
   String? school;
-  List<String>? clubs;
-  List<String>? photos;
+  String? clubs;
+  String? photos;
   String? city;
   String? bio;
 
@@ -35,8 +35,8 @@ class UserModel {
       dob: DateTime(1990, 10, 20),
       gender: 'Male',
       school: 'ABC School',
-      clubs: ['Club1', 'Club2'],
-      photos: [kauser1, 'photo2.jpg'],
+      clubs: 'Club1',
+      photos: kauser1,
       city: 'New York',
       bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     ),
@@ -47,8 +47,8 @@ class UserModel {
       dob: DateTime(1995, 5, 15),
       gender: 'Female',
       school: 'XYZ School',
-      clubs: ['Club3', 'Club4'],
-      photos: [kauser2, 'photo4.jpg'],
+      clubs: 'Club3',
+      photos: kauser2,
       city: 'Los Angeles',
       bio: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     ),
@@ -59,8 +59,8 @@ class UserModel {
       dob: DateTime(1987, 8, 25),
       gender: 'Male',
       school: 'PQR School',
-      clubs: ['Club5'],
-      photos: [kauser3],
+      clubs: 'Club5',
+      photos: kauser3,
       city: 'Chicago',
       bio:
           'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -72,8 +72,8 @@ class UserModel {
       dob: DateTime(1992, 4, 12),
       gender: 'Female',
       school: 'LMN School',
-      clubs: ['Club6'],
-      photos: ['photo6.jpg'],
+      clubs: 'Club6',
+      photos: 'photo6.jpg',
       city: 'Houston',
       bio:
           'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -85,8 +85,8 @@ class UserModel {
       dob: DateTime(1985, 12, 8),
       gender: 'Male',
       school: 'STU School',
-      clubs: ['Club7'],
-      photos: ['photo7.jpg'],
+      clubs: 'Club7',
+      photos: 'photo7.jpg',
       city: 'Miami',
       bio:
           'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -98,8 +98,8 @@ class UserModel {
       dob: DateTime(1998, 6, 30),
       gender: 'Female',
       school: 'UVW School',
-      clubs: ['Club8'],
-      photos: ['photo8.jpg'],
+      clubs: 'Club8',
+      photos: 'photo8.jpg',
       city: 'San Francisco',
       bio:
           'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',
