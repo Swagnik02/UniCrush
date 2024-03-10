@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:layout/layout.dart';
+import 'package:unicrush/firebase_options.dart';
 import 'package:unicrush/presentation/route/routes.dart';
 import 'package:unicrush/presentation/views/auth/login/login_page.dart';
 import 'package:unicrush/presentation/views/auth/onboard/onboard_page.dart';
@@ -15,9 +17,9 @@ import 'presentation/utils/extensions/extensions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //     options: DefaultFirebaseOptions.currentPlatform,
-  //     );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
