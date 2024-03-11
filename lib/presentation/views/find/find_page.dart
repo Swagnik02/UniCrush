@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
-import 'package:unicrush/model/lists.dart';
 import 'package:unicrush/model/user_model.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
 import 'package:unicrush/presentation/configs/constant_assets.dart';
@@ -130,78 +129,78 @@ class FindPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget _searchBody() {
-  return Column(
-    children: [
-      Align(
-          alignment: Alignment.topRight,
-          child: Transform.rotate(
-            angle: 45 * (3.14 / 180), // Convert degrees to radians
-            child: CustomIconButtons(
-              icon: LineIcons.plus,
-              onTap: () => Get.back(),
-            ),
-          )),
-      Align(
-        alignment: Alignment.topCenter,
-        child: Text(
-          'Club: ${CurrentUserDataService().userModel!.clubs}',
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: _searchListBody(),
-      ),
-    ],
-  );
-}
-
-void handleCustomizedBackdropContent(BuildContext context) async {
-  await Navigator.push(
-    context,
-    BackdropModalRoute<void>(
-      overlayContentBuilder: (context) {
-        return _searchBody();
-      },
-      topPadding: 100.0,
-      barrierColorVal: Colors.transparent,
-      backgroundColor: kBlack12.withOpacity(0.5),
-      backdropShape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-      ),
-      // barrierLabelVal: 'Customized Backdrop',
-      shouldMaintainState: false,
-      canBarrierDismiss: true,
-    ),
-  );
-}
-
-Widget _searchListBody() {
-  return SizedBox(
-    height: Get.height * 0.8,
-    child: ListView.builder(
-      itemCount: usersList.length,
-      itemBuilder: (context, index) {
-        UserModel user = usersList[index];
-        return ListTile(
-          leading: CircleAvatar(
-            foregroundImage: NetworkImage(user.photos.toString()),
+  Widget _searchBody() {
+    return Column(
+      children: [
+        Align(
+            alignment: Alignment.topRight,
+            child: Transform.rotate(
+              angle: 45 * (3.14 / 180), // Convert degrees to radians
+              child: CustomIconButtons(
+                icon: LineIcons.plus,
+                onTap: () => Get.back(),
+              ),
+            )),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Text(
+            'Club: ${CurrentUserDataService().userModel!.clubs}',
+            style: const TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          title: Text(user.username),
-          subtitle: Text(user.email ?? ''),
-          // You can add more details as needed
-          onTap: () => profileDetailsBottomSheet(context, user),
-        );
-      },
-    ),
-  );
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: _searchListBody(),
+        ),
+      ],
+    );
+  }
+
+  void handleCustomizedBackdropContent(BuildContext context) async {
+    await Navigator.push(
+      context,
+      BackdropModalRoute<void>(
+        overlayContentBuilder: (context) {
+          return _searchBody();
+        },
+        topPadding: 100.0,
+        barrierColorVal: Colors.transparent,
+        backgroundColor: kBlack12.withOpacity(0.5),
+        backdropShape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
+        // barrierLabelVal: 'Customized Backdrop',
+        shouldMaintainState: false,
+        canBarrierDismiss: true,
+      ),
+    );
+  }
+
+  Widget _searchListBody() {
+    return SizedBox(
+      height: Get.height * 0.8,
+      child: ListView.builder(
+        itemCount: controller.searchList.length,
+        itemBuilder: (context, index) {
+          UserModel user = controller.searchList[index];
+          return ListTile(
+            leading: CircleAvatar(
+              foregroundImage: NetworkImage(user.photos.toString()),
+            ),
+            title: Text(user.username),
+            subtitle: Text(user.email ?? ''),
+            // You can add more details as needed
+            onTap: () => profileDetailsBottomSheet(context, user),
+          );
+        },
+      ),
+    );
+  }
 }

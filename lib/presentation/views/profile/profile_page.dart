@@ -66,15 +66,15 @@ class ProfilePage extends StatelessWidget {
                 onPressed: controller.onTapLogOut,
                 child: const Text('LogOut'),
               ),
-              // TextButton(
-              //   style: ButtonStyle(
-              //       backgroundColor:
-              //           MaterialStateProperty.all<Color>(Colors.white)),
-              //   onPressed: () {
-              //     controller.matchBtn();
-              //   },
-              //   child: const Text('Test'),
-              // ),
+              TextButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white)),
+                onPressed: () {
+                  controller.addUserToFirestore();
+                },
+                child: const Text('Test'),
+              ),
             ],
           ),
         ),

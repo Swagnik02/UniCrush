@@ -47,20 +47,21 @@ class ProfilePageController extends GetxController {
   }
 
   void addUserToFirestore() async {
-    String email = 'John1234@gmail.com';
+    String email = 'rahul1234@gmail.com';
     DocumentReference userDocRef = FirebaseFirestore.instance
         .collection(FirestoreCollections.usersCollection)
         .doc(email);
 
     try {
       await userDocRef.set({
-        kcUid: 'uid04',
+        kcUid: 'uid06',
         kcEmail: email,
-        kcUserName: 'John',
+        kcUserName: 'Rahul',
         kcGender: 'Male',
-        kcSchool: 'IIIT BBSR',
+        kcSchool: 'KIIT',
         kcClubs: 'PSOC',
-        kcPhotos: 'photourl',
+        kcPhotos:
+            'https://firebasestorage.googleapis.com/v0/b/test-1e674.appspot.com/o/profilePhotos%2Fpexels-italo-melo-2379004.jpg?alt=media&token=ea146e72-59a0-403f-9c4a-70ff8ac20cc7',
       });
       print('User added to Firestore successfully.');
     } catch (e) {
