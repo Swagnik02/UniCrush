@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_icons/line_icons.dart';
@@ -60,7 +61,7 @@ Future<void> profileDetailsBottomSheet(BuildContext context, UserModel user) {
       return Container(
         height: Get.height * 0.85,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
@@ -105,7 +106,7 @@ Future<void> profileDetailsBottomSheet(BuildContext context, UserModel user) {
                         fontSize: 45,
                         color: kPrimaryMedium),
                   ),
-                  Text(
+                  const Text(
                     // calculateAge(user.dob).toString() ??
                     '25',
                     style: TextStyle(
@@ -121,6 +122,28 @@ Future<void> profileDetailsBottomSheet(BuildContext context, UserModel user) {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.school_rounded,
+                        color: Colors.white,
+                        size: 42,
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        user.school.toString(),
+                        style: const TextStyle(
+                            fontFamily: ksFontFamily,
+                            color: Colors.white,
+                            fontSize: 30),
+                      )
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Row(
@@ -175,7 +198,7 @@ class CustomIconButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: onTap,
         child: _MatteGlassMorphism(
@@ -218,7 +241,7 @@ class _MatteGlassMorphism extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
             gradient: LinearGradient(
