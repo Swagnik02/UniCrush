@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:backdrop_modal_route/backdrop_modal_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -103,6 +105,7 @@ class FindPage extends StatelessWidget {
       durationInMilliSeconds: 500,
       onPressButton: (isOpen) {
         controller.searchController.clear();
+        searchControl.clear();
         FocusScope.of(context).unfocus();
         controller.resetSearch();
       },
@@ -184,23 +187,54 @@ class FindPage extends StatelessWidget {
   }
 
   Widget _searchListBody() {
-    return SizedBox(
-      height: Get.height * 0.8,
-      child: ListView.builder(
-        itemCount: controller.searchList.length,
-        itemBuilder: (context, index) {
-          UserModel user = controller.searchList[index];
-          return ListTile(
-            leading: CircleAvatar(
-              foregroundImage: NetworkImage(user.photos.toString()),
+    return controller.searchList.isEmpty
+        ? Column(
+            children: [
+              Center(
+                child: Text(
+                  'User Not Found',
+                  style: TextStyle(
+                      fontFamily: ksFontFamily,
+                      fontSize: 15,
+                      color: kBackground),
+                ),
+              ),
+              Center(
+                child: Text(
+                  'Want to invite ?',
+                  style: TextStyle(
+                      fontFamily: ksFontFamily,
+                      fontSize: 15,
+                      color: kBackground),
+                ),
+              ),
+              Center(
+                  child: TextButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(kBackground)),
+                onPressed: () => log('invite'),
+                child: Text('Invite'.toUpperCase()),
+              )),
+            ],
+          )
+        : SizedBox(
+            height: Get.height * 0.8,
+            child: ListView.builder(
+              itemCount: controller.searchList.length,
+              itemBuilder: (context, index) {
+                UserModel user = controller.searchList[index];
+                return ListTile(
+                  leading: CircleAvatar(
+                    foregroundImage: NetworkImage(user.photos.toString()),
+                  ),
+                  title: Text(user.username),
+                  subtitle: Text(user.email ?? ''),
+                  // You can add more details as needed
+                  onTap: () => profileDetailsBottomSheet(context, user),
+                );
+              },
             ),
-            title: Text(user.username),
-            subtitle: Text(user.email ?? ''),
-            // You can add more details as needed
-            onTap: () => profileDetailsBottomSheet(context, user),
           );
-        },
-      ),
-    );
   }
 }

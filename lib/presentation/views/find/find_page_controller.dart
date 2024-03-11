@@ -20,6 +20,24 @@ class FindPageController extends GetxController {
   }
 
   void filteredValues(String value) {
-    log(value);
+    if (value.isEmpty) {
+      // If the search query is empty, reset the search list to the original list
+      searchList = usersList
+          .where((user) =>
+              user.clubs == CurrentUserDataService().userModel!.clubs &&
+              user.email !=
+                  CurrentUserDataService().userModel!.email.toString())
+          .toList();
+    } else {
+      // If the search query is not empty, filter the search list based on username
+      searchList = usersList
+          .where((user) =>
+              user.username.toLowerCase().contains(value.toLowerCase()) &&
+              user.clubs == CurrentUserDataService().userModel!.clubs &&
+              user.email !=
+                  CurrentUserDataService().userModel!.email.toString())
+          .toList();
+    }
+    update(); // Update the UI to reflect the changes in searchList
   }
 }
