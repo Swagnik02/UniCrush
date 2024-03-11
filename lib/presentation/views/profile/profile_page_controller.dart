@@ -67,4 +67,29 @@ class ProfilePageController extends GetxController {
       print('Error adding user to Firestore: $e');
     }
   }
+
+  void matchBtn() {
+    String matchEmail = CurrentUserDataService().userModel!.email.toString();
+    log(matchEmail);
+
+    CollectionReference matchesCollection = FirebaseFirestore.instance
+        .collection(FirestoreCollections.usersCollection)
+        .doc(matchEmail)
+        .collection(FirestoreCollections.matchesCollection);
+
+    matchesCollection.doc(CurrentUserDataService().userModel!.email).set(
+      {
+        kcUid: 'uid04',
+        kcEmail: 'John1234@gmail.com',
+        kcUserName: 'John',
+        kcPhotos:
+            'https://firebasestorage.googleapis.com/v0/b/test-1e674.appspot.com/o/profilePhotos%2Fuser1.png?alt=media&token=072cca9e-0f6f-4dfd-9ea0-a0900e965b91',
+        kcMatchTime: DateTime.now(),
+      },
+    ).then((_) {
+      log('Match data added successfully');
+    }).catchError((error) {
+      log('Failed to add match data: $error');
+    });
+  }
 }

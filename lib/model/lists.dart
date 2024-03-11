@@ -64,3 +64,30 @@ Future<void> fetchMatches() async {
     print('Error fetching matches: $e');
   }
 }
+
+void listenToMatches() {
+  FirebaseFirestore.instance
+      .collection(FirestoreCollections.usersCollection)
+      .doc(CurrentUserDataService().userModel!.email)
+      .collection(FirestoreCollections.matchesCollection)
+      .snapshots()
+      .listen((QuerySnapshot querySnapshot) {
+    // Clear the existing matches list
+    matchesList.clear();
+    // Process the new documents
+    querySnapshot.docs.forEach((doc) {
+      Map<String, dynamic>? matchData = doc.data() as Map<String, dynamic>?;
+      if (matchData != null) {
+        MatchModel match = MatchModel(
+          uid: matchData['uid'] ?? '',
+          email: matchData['email'] ?? '',
+          username: matchData['username'] ?? '',
+          userPhoto: matchData['userPhoto'] ?? '',
+          matchTime: DateTime.now(),
+        );
+        matchesList.add(match);
+        print(match.username.toString());
+      }
+    });
+  });
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unicrush/model/lists.dart';
 import 'package:unicrush/presentation/configs/configs.dart';
+import 'package:unicrush/presentation/utils/match_func.dart';
 import 'package:unicrush/presentation/views/profile/profile_page_controller.dart';
 import 'package:unicrush/presentation/widgets/custom_text_field.dart';
 import 'package:unicrush/services/current_user_data_service.dart';
@@ -65,15 +66,15 @@ class ProfilePage extends StatelessWidget {
                 onPressed: controller.onTapLogOut,
                 child: const Text('LogOut'),
               ),
-              TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white)),
-                onPressed: () {
-                  fetchUsers();
-                },
-                child: const Text('Test'),
-              ),
+              // TextButton(
+              //   style: ButtonStyle(
+              //       backgroundColor:
+              //           MaterialStateProperty.all<Color>(Colors.white)),
+              //   onPressed: () {
+              //     controller.matchBtn();
+              //   },
+              //   child: const Text('Test'),
+              // ),
             ],
           ),
         ),
